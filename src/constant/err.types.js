@@ -38,5 +38,15 @@ module.exports = {
         code: '10102',
         message: '无效的token',
         result: ''
+    },
+    hasNotAdminPermission: {
+        code: '10103',
+        message: '没有管理员权限',
+        result:''
+    },
+    fileUploadError: {
+        code: '10201',
+        message: '商品图片上传失败',
+        result: ''
     }
 }

@@ -6,17 +6,18 @@ const { JWT_SECRET } = require('../config/config.default.js')
 class UserController {
     async register(ctx, next) {
         // 1. 获取数据
-        const { user_name, password } = ctx.request.body;
+        const { user_name, password,isAdmin } = ctx.request.body;
         try {
             // 2. 操作数据
-            const res = await createUser(user_name, password);
+            const res = await createUser(user_name, password,isAdmin);
             // 3. 返回结果
             ctx.body = {
                 code: 0,
                 message: '用户注册成功',
                 result: {
                     id: res.id,
-                    user_name: res.user_name
+                    user_name: res.user_name,
+                    isAdmin: res.isAdmin
                 }
             };
         } catch(err) {
