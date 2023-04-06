@@ -4,10 +4,12 @@ const path = require('path');
 const Koa = require('koa'); // koa是一个类，调用需要实例化
 const { koaBody } = require('koa-body');
 const KoaStatic = require('koa-static');
+const parameter = require('koa-parameter'); // 参数校验
 // 自定义模块
 const router = require('../router/index.js');
 
 const app = new Koa();
+app.use(parameter(app));
 app.use(koaBody({
     multipart: true,
     formidable: {

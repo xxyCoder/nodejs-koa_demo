@@ -48,5 +48,15 @@ module.exports = {
         code: '10201',
         message: '商品图片上传失败',
         result: ''
+    },
+    goodsFormatError: {
+        code: '10203',
+        message: '参数不匹配',
+        result: ''
+    },
+    publishGoodsError: {
+        code: '10204',
+        message: '发布商品失败',
+        result: ''
     }
 }
