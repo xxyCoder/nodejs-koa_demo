@@ -1,6 +1,18 @@
 const path = require('path');
-const { fileUploadError, publishGoodsError } = require('../constant/err.types')
-const  { createGoods,updateGoods } = require('../service/goods.service')
+const { 
+    fileUploadError, 
+    publishGoodsError,
+    removeGoodsError,
+    invalidGoodsId,
+    restoreGoodsError 
+} = require('../constant/err.types')
+const  { 
+    createGoods,
+    updateGoods,
+    removeGoods,
+    restoreGoods,
+    findGoods 
+} = require('../service/goods.service')
 
 class GoodsController {
     async upload(ctx,next) {
@@ -51,6 +63,48 @@ class GoodsController {
             }
             ctx.body = err.message;
         }
+    }
+    async remove(ctx) {
+        try {
+            const res = await removeGoods(ctx.params.id);
+            if(res) {
+                ctx.body = {
+                    code: 0,
+                    message: '下架商品成功',
+                    result: ''
+                }
+            } else {
+                ctx.body = invalidGoodsId;
+            }
+            
+        } catch(err) {
+            ctx.body = removeGoodsError;
+        }
+    }
+    async restore(ctx) {
+        try {
+            const res = await restoreGoods(ctx.params.id);
+            if(res) {
+                ctx.body = {
+                    code: 0,
+                    message: '商品上线成功',
+                    result: ''
+                }
+            } else {
+                ctx.body = invalidGoodsId;
+            }
+        } catch(err) {
+            ctx.body = restoreGoodsError;
+        }
+    }
+    async findAll(ctx) {
+        const { pageNum = 1,pageSize = 10 } = ctx.request.query;
+        const res = await findGoods(pageNum,pageSize);
+        ctx.body = {
+            code: 0,
+            message: '获取成功',
+            result: res
+        };
     }
 }
 

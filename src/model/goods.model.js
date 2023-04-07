@@ -28,7 +28,7 @@ const Goods = seq.define('mall_good',{
        comment: '商品是否下架' 
     }
 },{
-    timestamps: false
+    paranoid: true
 });
 
 // Goods.sync({ force: true })

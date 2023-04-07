@@ -58,5 +58,20 @@ module.exports = {
         code: '10204',
         message: '发布商品失败',
         result: ''
+    },
+    removeGoodsError: {
+        code: '10204',
+        message: '下架商品失败',
+        result: ''
+    },
+    invalidGoodsId: {
+        code: '10206',
+        message: '无效的商品id',
+        result: ''
+    },
+    restoreGoodsError: {
+        code: '10207',
+        message: '商品上线失败',
+        result: ''
     }
 }
